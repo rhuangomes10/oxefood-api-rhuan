@@ -35,6 +35,9 @@ public class Entregador extends EntidadeAuditavel {
     private String cpf;
 
     @Column
+    private Integer rg;
+
+    @Column
     private String foneCelular;
 
     @Column

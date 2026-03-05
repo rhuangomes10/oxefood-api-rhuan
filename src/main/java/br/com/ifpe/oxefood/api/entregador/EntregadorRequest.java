@@ -27,6 +27,8 @@ public class EntregadorRequest {
 
     private String foneFixo;
 
+    private Integer rg;
+
     private Integer qtdEntregasRealizadas;
 
     private Double valorFrete;
@@ -52,6 +54,7 @@ public class EntregadorRequest {
                 .nome(nome)
                 .dataNascimento(dataNascimento)
                 .cpf(cpf)
+                .rg(rg)
                 .foneCelular(foneCelular)
                 .foneFixo(foneFixo)
                 .qtdEntregasRealizadas(qtdEntregasRealizadas)

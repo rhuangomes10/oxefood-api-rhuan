@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import jakarta.transaction.Transactional;
+import java.util.List;
 
 @Service
 public class ProdutoService {
@@ -16,5 +17,15 @@ public class ProdutoService {
 
         produto.setHabilitado(Boolean.TRUE);
         return repository.save(produto);
+    }
+
+    public List<Produto> listarTodos() {
+  
+        return repository.findAll();
+    }
+
+    public Produto obterPorID(Long id) {
+
+        return repository.findById(id).get();
     }
 }
