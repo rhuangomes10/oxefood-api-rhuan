@@ -1,10 +1,11 @@
 package br.com.ifpe.oxefood.modelo.entregador;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import jakarta.transaction.Transactional;
-import java.util.List;
 
 @Service
 public class EntregadorService {
@@ -28,4 +29,29 @@ public class EntregadorService {
 
         return repository.findById(id).get();
     }
+
+    @Transactional
+   public void update(Long id, Entregador entregadorAlterado) {
+
+      Entregador entregador = repository.findById(id).get();
+      entregador.setNome(entregadorAlterado.getNome());
+      entregador.setDataNascimento(entregadorAlterado.getDataNascimento());
+      entregador.setCpf(entregadorAlterado.getCpf());
+      entregador.setFoneCelular(entregadorAlterado.getFoneCelular());
+      entregador.setFoneFixo(entregadorAlterado.getFoneFixo());
+      entregador.setQtdEntregasRealizadas(entregadorAlterado.getQtdEntregasRealizadas());
+      entregador.setValorFrete(entregadorAlterado.getValorFrete());
+      entregador.setEnderecoBairro(entregadorAlterado.getEnderecoBairro());
+      entregador.setEnderecoCep(entregadorAlterado.getEnderecoCep());
+      entregador.setEnderecoCidade(entregadorAlterado.getEnderecoCidade());
+      entregador.setEnderecoComplemento(entregadorAlterado.getEnderecoComplemento());
+      entregador.setEnderecoNumero(entregadorAlterado.getEnderecoNumero());
+      entregador.setEnderecoRua(entregadorAlterado.getEnderecoRua());
+      entregador.setEnderecoUf(entregadorAlterado.getEnderecoUf());
+      entregador.setAtivo(entregadorAlterado.getAtivo());
+
+	    
+      repository.save(entregador);
+  }
+
 }
