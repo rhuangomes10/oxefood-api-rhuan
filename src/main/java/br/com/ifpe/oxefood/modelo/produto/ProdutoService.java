@@ -21,7 +21,7 @@ public class ProdutoService {
     }
 
     public List<Produto> listarTodos() {
-  
+
         return repository.findAll();
     }
 
@@ -31,27 +31,27 @@ public class ProdutoService {
     }
 
     @Transactional
-   public void update(Long id, Produto produtoAlterado) {
+    public void update(Long id, Produto produtoAlterado) {
 
-      Produto produto = repository.findById(id).get();
-      produto.setCodigo(produtoAlterado.getCodigo());
-      produto.setDescricao(produtoAlterado.getDescricao());
-      produto.setTitulo(produtoAlterado.getTitulo());
-      produto.setValorUnitario(produtoAlterado.getValorUnitario());
-      produto.setTempoEntregaMaximo(produtoAlterado.getTempoEntregaMaximo());
-      produto.setTempoEntregaMinimo(produtoAlterado.getTempoEntregaMinimo());
-	    
-      repository.save(produto);
-  }
+        Produto produto = repository.findById(id).get();
+        produto.setCategoria(produtoAlterado.getCategoria());
+        produto.setCodigo(produtoAlterado.getCodigo());
+        produto.setDescricao(produtoAlterado.getDescricao());
+        produto.setTitulo(produtoAlterado.getTitulo());
+        produto.setValorUnitario(produtoAlterado.getValorUnitario());
+        produto.setTempoEntregaMaximo(produtoAlterado.getTempoEntregaMaximo());
+        produto.setTempoEntregaMinimo(produtoAlterado.getTempoEntregaMinimo());
 
-  @Transactional
-   public void delete(Long id) {
+        repository.save(produto);
+    }
 
-       Produto produto = repository.findById(id).get();
-       produto.setHabilitado(Boolean.FALSE);
+    @Transactional
+    public void delete(Long id) {
 
-       repository.save(produto);
-   }
+        Produto produto = repository.findById(id).get();
+        produto.setHabilitado(Boolean.FALSE);
 
+        repository.save(produto);
+    }
 
 }
