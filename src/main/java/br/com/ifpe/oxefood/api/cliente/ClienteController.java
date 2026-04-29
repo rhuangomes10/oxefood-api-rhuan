@@ -59,7 +59,7 @@ public class ClienteController {
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping
+    @PostMapping("/endereco/{clienteId}")
     public ResponseEntity<EnderecoCliente> adicionarEnderecoCliente(@PathVariable("clienteId") Long clienteId,
             @RequestBody @Valid EnderecoClienteRequest request) {
 
