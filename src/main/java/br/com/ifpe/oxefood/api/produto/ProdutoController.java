@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import br.com.ifpe.oxefood.modelo.produto.CategoriaProdutoService;
 import br.com.ifpe.oxefood.modelo.produto.Produto;
@@ -60,7 +61,7 @@ public class ProdutoController {
         Produto produtoAlterado = request.build();
         produtoAlterado.setCategoria(categoriaProdutoService.obterPorID(request.getIdCategoria()));
         produtoService.update(id, produtoAlterado);
-        
+
         return ResponseEntity.ok().build();
     }
 
@@ -72,13 +73,19 @@ public class ProdutoController {
     }
 
     @PostMapping("/filtrar")
-   public List<Produto> filtrar(
-           @RequestParam(value = "codigo", required = false) String codigo,
-           @RequestParam(value = "titulo", required = false) String titulo,
-           @RequestParam(value = "idCategoria", required = false) Long idCategoria) {
+    public List<Produto> filtrar(
+            @RequestParam(value = "codigo", required = false) String codigo,
+            @RequestParam(value = "titulo", required = false) String titulo,
+            @RequestParam(value = "idCategoria", required = false) Long idCategoria) {
 
-       return produtoService.filtrar(codigo, titulo, idCategoria);
-   }
+        return produtoService.filtrar(codigo, titulo, idCategoria);
+    }
 
+    @PostMapping("/{id}")
+    public ResponseEntity<Produto> saveImage(@PathVariable Long id, @RequestParam(value = "imagem", required = true) MultipartFile imagem) {
+
+        Produto produto = produtoService.saveImage(id, imagem);
+        return new ResponseEntity<>(produto, HttpStatus.CREATED);
+    }
 
 }

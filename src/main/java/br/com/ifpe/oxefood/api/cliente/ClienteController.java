@@ -20,13 +20,19 @@ import br.com.ifpe.oxefood.modelo.acesso.UsuarioService;
 import br.com.ifpe.oxefood.modelo.cliente.Cliente;
 import br.com.ifpe.oxefood.modelo.cliente.ClienteService;
 import br.com.ifpe.oxefood.modelo.cliente.EnderecoCliente;
-import br.com.ifpe.oxefood.modelo.produto.Produto;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/cliente")
 @CrossOrigin
+@Tag(
+        name = "API Cliente",
+        description = "API responsável pelos servidos de cliente no sistema"
+)
+
 public class ClienteController {
 
     @Autowired
@@ -35,12 +41,15 @@ public class ClienteController {
     @Autowired
     private UsuarioService usuarioService;
 
-
+    @Operation(
+            summary = "Serviço responsável por salvar um cliente no sistema.",
+            description = "Exemplo de descrição de um endpoint responsável por inserir um cliente no sistema."
+    )
     @PostMapping
     public ResponseEntity<Cliente> save(@RequestBody @Valid ClienteRequest clienteRequest, HttpServletRequest request) {
 
         Cliente cliente = clienteService.save(clienteRequest.build(), usuarioService.obterUsuarioLogado(request));
-        return new ResponseEntity<>(cliente, HttpStatus.CREATED);   
+        return new ResponseEntity<>(cliente, HttpStatus.CREATED);
     }
 
     @GetMapping
@@ -91,13 +100,11 @@ public class ClienteController {
     }
 
     @PostMapping("/filtrar")
-   public List<Cliente> filtrar(
-           @RequestParam(value = "nome", required = false) String nome,
-           @RequestParam(value = "cpf", required = false) String cpf){
+    public List<Cliente> filtrar(
+            @RequestParam(value = "nome", required = false) String nome,
+            @RequestParam(value = "cpf", required = false) String cpf) {
 
-       return clienteService.filtrar(nome,cpf);
-   }
-
-
+        return clienteService.filtrar(nome, cpf);
+    }
 
 }
