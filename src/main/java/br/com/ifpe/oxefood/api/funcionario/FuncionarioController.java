@@ -19,11 +19,16 @@ import br.com.ifpe.oxefood.modelo.acesso.Perfil;
 import br.com.ifpe.oxefood.modelo.funcionario.Funcionario;
 import br.com.ifpe.oxefood.modelo.funcionario.FuncionarioService;
 import br.com.ifpe.oxefood.modelo.funcionario.TipoFuncionario;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/funcionario")
 @CrossOrigin
+@Tag(
+    name = "API Funcionário",
+    description = "API responsável pelos serviços de funcionário no sistema"
+)
 public class FuncionarioController {
 
     @Autowired

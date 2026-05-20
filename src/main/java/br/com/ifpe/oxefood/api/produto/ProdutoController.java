@@ -20,11 +20,16 @@ import org.springframework.web.multipart.MultipartFile;
 import br.com.ifpe.oxefood.modelo.produto.CategoriaProdutoService;
 import br.com.ifpe.oxefood.modelo.produto.Produto;
 import br.com.ifpe.oxefood.modelo.produto.ProdutoService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/produto")
 @CrossOrigin
+@Tag(
+    name = "API Produto",
+    description = "API responsável pelos serviços de produto no sistema"
+)
 public class ProdutoController {
 
     @Autowired

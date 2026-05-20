@@ -30,7 +30,7 @@ import jakarta.validation.Valid;
 @CrossOrigin
 @Tag(
         name = "API Cliente",
-        description = "API responsável pelos servidos de cliente no sistema"
+        description = "API responsável pelos serviços de cliente no sistema"
 )
 
 public class ClienteController {

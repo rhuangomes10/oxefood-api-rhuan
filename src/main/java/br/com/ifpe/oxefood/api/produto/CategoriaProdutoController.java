@@ -17,11 +17,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.ifpe.oxefood.modelo.produto.CategoriaProduto;
 import br.com.ifpe.oxefood.modelo.produto.CategoriaProdutoService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/categoriaproduto")
 @CrossOrigin
+@Tag(
+    name = "API CategoriaProduto",
+    description = "API responsável pelos serviços de categoria do produto no sistema"
+)
 public class CategoriaProdutoController {
 
     @Autowired
